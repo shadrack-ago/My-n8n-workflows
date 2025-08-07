@@ -1,0 +1,1628 @@
+{
+    "nodes": [
+      {
+        "parameters": {},
+        "id": "8df39dbf-a9c7-4de0-9582-8946a312a35f",
+        "name": "When clicking ‘Execute workflow’",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          624,
+          240
+        ],
+        "typeVersion": 1
+      },
+      {
+        "parameters": {
+          "content": "## **Find out SMTP info for your email service provider Link** \n\nhttps://docs.google.com/document/d/1UnAYprKmGWHQ7VDpzdMndV7-iPl1sVlIIke3GY5O8e0/edit?usp=sharing",
+          "height": 256,
+          "color": 7
+        },
+        "id": "3adc0f15-d7a2-4b23-b36d-eb0361167446",
+        "name": "Sticky Note2",
+        "type": "n8n-nodes-base.stickyNote",
+        "position": [
+          2144,
+          1392
+        ],
+        "typeVersion": 1
+      },
+      {
+        "parameters": {
+          "content": "## **Sample Google Sheet for  Leads I used.** \n\nhttps://docs.google.com/spreadsheets/d/1pWxsNGde3BHzIF7IMiRum4sGjVNRl9LfcJybmgkzuMM/edit?usp=sharing \n\n\n- ",
+          "height": 224,
+          "width": 224,
+          "color": 7
+        },
+        "id": "bb87b350-c396-4cd4-a266-1b58300cf261",
+        "name": "Sticky Note4",
+        "type": "n8n-nodes-base.stickyNote",
+        "position": [
+          288,
+          640
+        ],
+        "typeVersion": 1
+      },
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "triggerAtHour": 9
+              }
+            ]
+          }
+        },
+        "id": "5a7e7b8a-30ef-43fa-a290-23ccff275628",
+        "name": "Schedule Trigger at 9 AM",
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "position": [
+          336,
+          240
+        ],
+        "typeVersion": 1.2
+      },
+      {
+        "parameters": {
+          "documentId": {
+            "__rl": true,
+            "value": "1k4F6BaWQHiuhSxKm9pyg0mqOvGeSj-FQwuV1DHhvD0M",
+            "mode": "list",
+            "cachedResultName": "Copy of Leads",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1k4F6BaWQHiuhSxKm9pyg0mqOvGeSj-FQwuV1DHhvD0M/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Sheet1",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1k4F6BaWQHiuhSxKm9pyg0mqOvGeSj-FQwuV1DHhvD0M/edit#gid=0"
+          },
+          "options": {}
+        },
+        "id": "5c58d9d4-f19c-44f1-871c-a31dde73f8c3",
+        "name": "Lead Sheet - Get Rows from the sheet",
+        "type": "n8n-nodes-base.googleSheets",
+        "position": [
+          832,
+          240
+        ],
+        "typeVersion": 4.6,
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "vMgp8W7HfPePodlc",
+            "name": "Google Sheets account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "version": 2,
+              "leftValue": "",
+              "caseSensitive": true,
+              "typeValidation": "strict"
+            },
+            "combinator": "and",
+            "conditions": [
+              {
+                "id": "d70305b4-4313-4b48-8e20-16a7d10acb81",
+                "operator": {
+                  "type": "string",
+                  "operation": "contains"
+                },
+                "leftValue": "={{ $json.result }}",
+                "rightValue": "undeliverable"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "78f8130a-26ee-4e7b-b749-2c201eb6aca2",
+        "name": "Checker - If emails are verified or no?",
+        "type": "n8n-nodes-base.if",
+        "position": [
+          1760,
+          400
+        ],
+        "typeVersion": 2.2
+      },
+      {
+        "parameters": {
+          "content": "## **Add Email Verification API** \n\nI use hunter, https://hunter.io/api-keys\n\nYou can use any other tools",
+          "height": 192,
+          "width": 208
+        },
+        "id": "935d4058-b2e9-43f1-a887-defb038948c3",
+        "name": "Sticky Note5",
+        "type": "n8n-nodes-base.stickyNote",
+        "position": [
+          1504,
+          1248
+        ],
+        "typeVersion": 1
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "05814c14-4365-4c37-af55-f28bf2ee5819",
+                "name": "accepted[0]",
+                "type": "string",
+                "value": "Sent"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "4b8ae9a2-346c-424f-ba77-fb0aa42c4e58",
+        "name": "Creating Field for Updating \"Sent\" in G Sheet1",
+        "type": "n8n-nodes-base.set",
+        "position": [
+          2416,
+          400
+        ],
+        "typeVersion": 3.4
+      },
+      {
+        "parameters": {},
+        "id": "4f251ddb-b669-4b14-8255-ab47ab062516",
+        "name": "No Operation, do nothing5",
+        "type": "n8n-nodes-base.noOp",
+        "position": [
+          2080,
+          160
+        ],
+        "typeVersion": 1
+      },
+      {
+        "parameters": {
+          "operation": "emailVerifier",
+          "email": "={{ $json.Email }}"
+        },
+        "id": "d8fd0b18-6907-4466-b2f5-d5bd19293da8",
+        "name": "Email verification using Hunter",
+        "type": "n8n-nodes-base.hunter",
+        "position": [
+          1504,
+          416
+        ],
+        "typeVersion": 1,
+        "credentials": {
+          "hunterApi": {
+            "id": "rzXRUJ3JKCgyPgHk",
+            "name": "Hunter account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "version": 2,
+              "leftValue": "",
+              "caseSensitive": true,
+              "typeValidation": "strict"
+            },
+            "conditions": [
+              {
+                "id": "c72a013e-7b22-4bc7-a6c6-d51e9804ece7",
+                "operator": {
+                  "type": "string",
+                  "operation": "contains"
+                },
+                "leftValue": "={{ $json['Email Sent'] }}",
+                "rightValue": "Sent"
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "id": "de42e271-8e99-4a09-b189-a0af7b2bbcb2",
+        "name": "Checker - If Already \"Sent\" or not",
+        "type": "n8n-nodes-base.if",
+        "position": [
+          1056,
+          240
+        ],
+        "typeVersion": 2.2
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "version": 2,
+              "leftValue": "",
+              "caseSensitive": true,
+              "typeValidation": "strict"
+            },
+            "combinator": "and",
+            "conditions": [
+              {
+                "id": "d70305b4-4313-4b48-8e20-16a7d10acb81",
+                "operator": {
+                  "type": "string",
+                  "operation": "empty",
+                  "singleValue": true
+                },
+                "leftValue": "={{ $json.Email }}",
+                "rightValue": ""
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "6a1c602a-489b-4c83-b2b8-da27bc80718f",
+        "name": "Checker - If Lead's \"Email\" Field is empty?",
+        "type": "n8n-nodes-base.if",
+        "position": [
+          1280,
+          336
+        ],
+        "typeVersion": 2.2
+      },
+      {
+        "parameters": {},
+        "id": "3234922f-6bc2-4127-aa64-743d2ba2faa2",
+        "name": "No Operation, Do Nothing",
+        "type": "n8n-nodes-base.noOp",
+        "position": [
+          1232,
+          144
+        ],
+        "typeVersion": 1
+      },
+      {
+        "parameters": {},
+        "id": "808e5a15-f0ca-4c9a-8361-2dad2ef51849",
+        "name": "No Operation, Do Nothing1",
+        "type": "n8n-nodes-base.noOp",
+        "position": [
+          1520,
+          160
+        ],
+        "typeVersion": 1
+      },
+      {
+        "parameters": {
+          "content": "## **Connect with Google Sheet or CRM** ",
+          "height": 128,
+          "width": 224
+        },
+        "id": "d98f7325-01c6-4e62-acc9-ca6bee188d39",
+        "name": "Sticky Note",
+        "type": "n8n-nodes-base.stickyNote",
+        "position": [
+          288,
+          -144
+        ],
+        "typeVersion": 1
+      },
+      {
+        "parameters": {
+          "fromEmail": "info@customcx.com",
+          "toEmail": "={{ $('Lead Sheet - Get Rows from the sheet').item.json.Email }}",
+          "subject": "Let's collaborate!",
+          "emailFormat": "text",
+          "text": "=Hello {{ $('Lead Sheet - Get Rows from the sheet').item.json['Tool Name'] }} team, \n\nWe can collborate on multiple features. Can we have a quick meet over the meet?\n\nBest regards,\nShadrack",
+          "options": {
+            "appendAttribution": false
+          }
+        },
+        "id": "ecfd047b-fcb8-4e7b-a150-537cc96be2f2",
+        "name": "Send email using SMTP",
+        "type": "n8n-nodes-base.emailSend",
+        "position": [
+          2048,
+          384
+        ],
+        "webhookId": "3a2cb249-8183-4481-8df7-5fcdd2c52881",
+        "executeOnce": false,
+        "typeVersion": 2.1,
+        "credentials": {
+          "smtp": {
+            "id": "aVNkYHrGCmSuOOdm",
+            "name": "SMTP account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "content": "## **Send email using SMTP- Any Email Provider works** ",
+          "height": 128,
+          "width": 224
+        },
+        "id": "2188bf86-d2d8-48c2-9783-954d3c879089",
+        "name": "Sticky Note1",
+        "type": "n8n-nodes-base.stickyNote",
+        "position": [
+          1904,
+          1200
+        ],
+        "typeVersion": 1
+      },
+      {
+        "parameters": {
+          "content": "## **Step-by-Step Tutorial YouTube Video Link** \n\n\nhttps://youtu.be/Dg68OaYPhYs?si=LVu9pdxt9JUuCrzM",
+          "height": 208,
+          "width": 272,
+          "color": 7
+        },
+        "id": "42a71dd2-654d-48ca-9e89-619402f9b65a",
+        "name": "Sticky Note3",
+        "type": "n8n-nodes-base.stickyNote",
+        "position": [
+          16,
+          608
+        ],
+        "typeVersion": 1
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "documentId": {
+            "__rl": true,
+            "value": "1k4F6BaWQHiuhSxKm9pyg0mqOvGeSj-FQwuV1DHhvD0M",
+            "mode": "list",
+            "cachedResultName": "Copy of Leads",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1k4F6BaWQHiuhSxKm9pyg0mqOvGeSj-FQwuV1DHhvD0M/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Sheet1",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1k4F6BaWQHiuhSxKm9pyg0mqOvGeSj-FQwuV1DHhvD0M/edit#gid=0"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "Email Sent": "={{ $json.accepted[0] }}"
+            },
+            "matchingColumns": [
+              "Email Sent"
+            ],
+            "schema": [
+              {
+                "id": "Tool Name",
+                "displayName": "Tool Name",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Country",
+                "displayName": "Country",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Tool Link",
+                "displayName": "Tool Link",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Link to Apply Affiliate",
+                "displayName": "Link to Apply Affiliate",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "How to Work",
+                "displayName": "How to Work",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Affiliate Link to Share",
+                "displayName": "Affiliate Link to Share",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Coupon Code",
+                "displayName": "Coupon Code",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Reach Out Mode",
+                "displayName": "Reach Out Mode",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Email",
+                "displayName": "Email",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "How did you find?",
+                "displayName": "How did you find?",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Status",
+                "displayName": "Status",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Reach Out Platform",
+                "displayName": "Reach Out Platform",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Incoming",
+                "displayName": "Incoming",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Script",
+                "displayName": "Script",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Email Sent",
+                "displayName": "Email Sent",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "row_number",
+                "displayName": "row_number",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "number",
+                "canBeUsedToMatch": true,
+                "readOnly": true,
+                "removed": true
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "id": "5517a18d-ce51-4f97-bfc1-62957ecd1103",
+        "name": "Lead Sheet - Get Rows from the sheet1",
+        "type": "n8n-nodes-base.googleSheets",
+        "position": [
+          2688,
+          352
+        ],
+        "typeVersion": 4.6,
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "vMgp8W7HfPePodlc",
+            "name": "Google Sheets account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "options": {
+            "systemMessage": "You are a helpful Lead automation assistant. your work is to send cold mails. Compose a brief email. USE email tool to send mails and then update the google sheet once the email is sent"
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 2.1,
+        "position": [
+          2272,
+          592
+        ],
+        "id": "b11f7d92-a7e0-413c-bef6-6222b46b67d7",
+        "name": "AI Agent"
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "documentId": {
+            "__rl": true,
+            "value": "1k4F6BaWQHiuhSxKm9pyg0mqOvGeSj-FQwuV1DHhvD0M",
+            "mode": "list",
+            "cachedResultName": "Copy of Leads",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1k4F6BaWQHiuhSxKm9pyg0mqOvGeSj-FQwuV1DHhvD0M/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Sheet1",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1k4F6BaWQHiuhSxKm9pyg0mqOvGeSj-FQwuV1DHhvD0M/edit#gid=0"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {},
+            "matchingColumns": [
+              "Tool Name"
+            ],
+            "schema": [
+              {
+                "id": "Tool Name",
+                "displayName": "Tool Name",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Country",
+                "displayName": "Country",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Tool Link",
+                "displayName": "Tool Link",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Link to Apply Affiliate",
+                "displayName": "Link to Apply Affiliate",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "How to Work",
+                "displayName": "How to Work",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Affiliate Link to Share",
+                "displayName": "Affiliate Link to Share",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Coupon Code",
+                "displayName": "Coupon Code",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Reach Out Mode",
+                "displayName": "Reach Out Mode",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Email",
+                "displayName": "Email",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "How did you find?",
+                "displayName": "How did you find?",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Status",
+                "displayName": "Status",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Reach Out Platform",
+                "displayName": "Reach Out Platform",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Incoming",
+                "displayName": "Incoming",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Script",
+                "displayName": "Script",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Email Sent",
+                "displayName": "Email Sent",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "status",
+                "displayName": "status",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "result",
+                "displayName": "result",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "_deprecation_notice",
+                "displayName": "_deprecation_notice",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "score",
+                "displayName": "score",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "email",
+                "displayName": "email",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "regexp",
+                "displayName": "regexp",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "gibberish",
+                "displayName": "gibberish",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "disposable",
+                "displayName": "disposable",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "webmail",
+                "displayName": "webmail",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "mx_records",
+                "displayName": "mx_records",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "smtp_server",
+                "displayName": "smtp_server",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "smtp_check",
+                "displayName": "smtp_check",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "accept_all",
+                "displayName": "accept_all",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "block",
+                "displayName": "block",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "sources",
+                "displayName": "sources",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "row_number",
+                "displayName": "row_number",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "number",
+                "canBeUsedToMatch": true,
+                "readOnly": true,
+                "removed": true
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheetsTool",
+        "typeVersion": 4.6,
+        "position": [
+          2768,
+          688
+        ],
+        "id": "28ea87d6-b002-4455-9f11-ed9dd807e09d",
+        "name": "Update row in sheet in Google Sheets",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "vMgp8W7HfPePodlc",
+            "name": "Google Sheets account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+        "typeVersion": 1,
+        "position": [
+          2288,
+          816
+        ],
+        "id": "c0e1e822-f0f4-49be-a49c-baa5a5ac6156",
+        "name": "Google Gemini Chat Model",
+        "credentials": {
+          "googlePalmApi": {
+            "id": "q1mDATlhD26qgYRs",
+            "name": "Google Gemini(PaLM) Mikes Api account 2"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "fromEmail": "info@customcx.com",
+          "toEmail": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To_Email', ``, 'string') }}",
+          "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
+          "options": {
+            "appendAttribution": false
+          }
+        },
+        "type": "n8n-nodes-base.emailSendTool",
+        "typeVersion": 2.1,
+        "position": [
+          2624,
+          816
+        ],
+        "id": "ba0d8b8e-f979-4eec-bdca-36fad1284afe",
+        "name": "Send email in Send Email",
+        "webhookId": "f38ce917-76ab-4035-94e5-82b4a7097c3b",
+        "credentials": {
+          "smtp": {
+            "id": "aVNkYHrGCmSuOOdm",
+            "name": "SMTP account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "documentId": {
+            "__rl": true,
+            "value": "1k4F6BaWQHiuhSxKm9pyg0mqOvGeSj-FQwuV1DHhvD0M",
+            "mode": "list",
+            "cachedResultName": "Copy of Leads",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1k4F6BaWQHiuhSxKm9pyg0mqOvGeSj-FQwuV1DHhvD0M/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Sheet1",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1k4F6BaWQHiuhSxKm9pyg0mqOvGeSj-FQwuV1DHhvD0M/edit#gid=0"
+          },
+          "columns": {
+            "mappingMode": "autoMapInputData",
+            "value": {},
+            "matchingColumns": [
+              "Tool Name"
+            ],
+            "schema": [
+              {
+                "id": "Tool Name",
+                "displayName": "Tool Name",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Country",
+                "displayName": "Country",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Tool Link",
+                "displayName": "Tool Link",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Link to Apply Affiliate",
+                "displayName": "Link to Apply Affiliate",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "How to Work",
+                "displayName": "How to Work",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Affiliate Link to Share",
+                "displayName": "Affiliate Link to Share",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Coupon Code",
+                "displayName": "Coupon Code",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Reach Out Mode",
+                "displayName": "Reach Out Mode",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Email",
+                "displayName": "Email",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "How did you find?",
+                "displayName": "How did you find?",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Status",
+                "displayName": "Status",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Reach Out Platform",
+                "displayName": "Reach Out Platform",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Incoming",
+                "displayName": "Incoming",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Script",
+                "displayName": "Script",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Email Sent",
+                "displayName": "Email Sent",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "status",
+                "displayName": "status",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "result",
+                "displayName": "result",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "_deprecation_notice",
+                "displayName": "_deprecation_notice",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "score",
+                "displayName": "score",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "email",
+                "displayName": "email",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "regexp",
+                "displayName": "regexp",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "gibberish",
+                "displayName": "gibberish",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "disposable",
+                "displayName": "disposable",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "webmail",
+                "displayName": "webmail",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "mx_records",
+                "displayName": "mx_records",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "smtp_server",
+                "displayName": "smtp_server",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "smtp_check",
+                "displayName": "smtp_check",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "accept_all",
+                "displayName": "accept_all",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "block",
+                "displayName": "block",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "sources",
+                "displayName": "sources",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "row_number",
+                "displayName": "row_number",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "number",
+                "canBeUsedToMatch": true,
+                "readOnly": true,
+                "removed": true
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.6,
+        "position": [
+          2096,
+          608
+        ],
+        "id": "0290ed0a-cfe5-488c-b642-f483eec80c63",
+        "name": "Update row in sheet",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "vMgp8W7HfPePodlc",
+            "name": "Google Sheets account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "download",
+          "fileId": {
+            "__rl": true,
+            "value": "https://drive.google.com/file/d/1oob_ul3ZnBStfxUCuWCTr1fa-jm83XHS/view?usp=sharing",
+            "mode": "url"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleDrive",
+        "typeVersion": 3,
+        "position": [
+          2320,
+          1200
+        ],
+        "id": "d972ed99-b484-4d46-b43f-a20ed8259aea",
+        "name": "Download file",
+        "credentials": {
+          "googleDriveOAuth2Api": {
+            "id": "eDpP3P4PjLffHA9W",
+            "name": "Google Drive account 2"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "mode": "insert",
+          "tableName": {
+            "__rl": true,
+            "value": "document",
+            "mode": "list",
+            "cachedResultName": "document"
+          },
+          "options": {
+            "queryName": "match_document"
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
+        "typeVersion": 1.3,
+        "position": [
+          2640,
+          1152
+        ],
+        "id": "d6f53cdf-e1e1-49e0-bdae-03ad0209727e",
+        "name": "Supabase Vector Store",
+        "credentials": {
+          "supabaseApi": {
+            "id": "PgYRVXLr3BAgRW34",
+            "name": "Supabase account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "dataType": "binary",
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+        "typeVersion": 1.1,
+        "position": [
+          2704,
+          1344
+        ],
+        "id": "7862bc76-7329-4978-86ef-3cea2d9eebc0",
+        "name": "Default Data Loader"
+      },
+      {
+        "parameters": {
+          "modelName": "embed-english-light-v2.0"
+        },
+        "type": "@n8n/n8n-nodes-langchain.embeddingsCohere",
+        "typeVersion": 1,
+        "position": [
+          2464,
+          1136
+        ],
+        "id": "1491d128-bd17-48ac-8e09-09a8aaef8567",
+        "name": "Embeddings Cohere",
+        "credentials": {
+          "cohereApi": {
+            "id": "DjdR2ztaBdLRWC24",
+            "name": "CohereApi account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "mode": "retrieve-as-tool",
+          "toolDescription": "call this tool to look up questions regarding Shadrack Otieno profesional Experience and Career.",
+          "tableName": {
+            "__rl": true,
+            "value": "document",
+            "mode": "list",
+            "cachedResultName": "document"
+          },
+          "topK": 8,
+          "options": {
+            "queryName": "match_document"
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
+        "typeVersion": 1.3,
+        "position": [
+          2512,
+          1040
+        ],
+        "id": "e717cf6d-a00c-475c-b8f0-90b330ce1bfa",
+        "name": "Supabase Vector Store1",
+        "credentials": {
+          "supabaseApi": {
+            "id": "PgYRVXLr3BAgRW34",
+            "name": "Supabase account"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "When clicking ‘Execute workflow’": {
+        "main": [
+          [
+            {
+              "node": "Lead Sheet - Get Rows from the sheet",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Lead Sheet - Get Rows from the sheet": {
+        "main": [
+          [
+            {
+              "node": "Checker - If Already \"Sent\" or not",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Checker - If emails are verified or no?": {
+        "main": [
+          [
+            {
+              "node": "No Operation, do nothing5",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Send email using SMTP",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Creating Field for Updating \"Sent\" in G Sheet1": {
+        "main": [
+          [
+            {
+              "node": "Lead Sheet - Get Rows from the sheet1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Email verification using Hunter": {
+        "main": [
+          [
+            {
+              "node": "Checker - If emails are verified or no?",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Checker - If Already \"Sent\" or not": {
+        "main": [
+          [
+            {
+              "node": "No Operation, Do Nothing",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Checker - If Lead's \"Email\" Field is empty?",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Checker - If Lead's \"Email\" Field is empty?": {
+        "main": [
+          [
+            {
+              "node": "No Operation, Do Nothing1",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Email verification using Hunter",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Send email using SMTP": {
+        "main": [
+          [
+            {
+              "node": "Creating Field for Updating \"Sent\" in G Sheet1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Update row in sheet in Google Sheets": {
+        "ai_tool": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Google Gemini Chat Model": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Send email in Send Email": {
+        "ai_tool": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Update row in sheet": {
+        "main": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Download file": {
+        "main": [
+          [
+            {
+              "node": "Supabase Vector Store",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Default Data Loader": {
+        "ai_document": [
+          [
+            {
+              "node": "Supabase Vector Store",
+              "type": "ai_document",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Embeddings Cohere": {
+        "ai_embedding": [
+          [
+            {
+              "node": "Supabase Vector Store",
+              "type": "ai_embedding",
+              "index": 0
+            },
+            {
+              "node": "Supabase Vector Store1",
+              "type": "ai_embedding",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Supabase Vector Store1": {
+        "ai_tool": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "pinData": {},
+    "meta": {
+      "templateId": "6758",
+      "templateCredsSetupCompleted": true,
+      "instanceId": "8f351f8f18f69574a46094a253f36ef0804528a7fc6d1eee81ee60e356860359"
+    }
+  }
