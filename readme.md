@@ -29,3 +29,5 @@ Add your SMTP credentials to connect the template with your preferred email prov
 Note: SMTP, which stands for Simple Mail Transfer Protocol, is a communication protocol used to send email messages between mail servers.
 
 After sending the email, we update the Google Sheet with “Sent”; hence, the email is not sent again the next day.
+
+the rag Agent/node refer to my customcx channel to learn more
